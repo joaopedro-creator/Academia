@@ -1,52 +1,63 @@
 public class Mensalidade {
-    public static float valorMensalidade = 80.0f;
     private String aluno;
     private float valor;
     private String dataVencimento;
     private boolean pagamentoEfetuado;
-    private boolean cancelar;
+    private boolean cancelada;
     private int diasTreino;
 
 
-    public Mensalidade(String aluno, float valor, String dataVencimento) {
+    public Mensalidade(String aluno, String dataVencimento, int diasTreino) {
         this.aluno = aluno;
-        this.valor = valor;
+        this.valor = 80.0f;
         this.dataVencimento = dataVencimento;
         this.pagamentoEfetuado = false;
+        this.cancelada = false;
+        this.diasTreino = diasTreino;
+        definirValorPlano();
     }
 
     public void efetuarPagamento() {
-        this.pagamentoEfetuado = true;
-        System.out.println("Pagamento efetuado para o aluno: " + aluno);
-    }
-    
-    public String encerrarPagamento(){
-        if(cancelar){
-            return "Pagamento cancelado para o aluno: " + aluno;
+        if (!cancelada) {
+            this.pagamentoEfetuado = true;
+            System.out.println("Pagamento efetuado para o aluno: " + aluno);
         } else {
-            return "Pagamento não cancelado para o aluno: " + aluno;
-        }
+            System.out.println("Pagamento não permitido. Mensalidade cancelada.");
     }
+}
+    
+
+    public void cancelarPagamento() {
+        this.cancelada = true;
+        this.pagamentoEfetuado = false;
+        System.out.println("Pagamento cancelado para o aluno: " + aluno);
+    }
+
+
     // Define o valor com base nos dias de treino
-    public void valorPlano(){
+    public void definirValorPlano(){
         if(diasTreino == 3){
             this.valor = 45.0f;
         } else if (diasTreino == 5){
             this.valor = 80.0f;
         } 
     }
+
+
     // Pagamento de diária 
     public void pagarDiaria(){
         System.out.println("Pagamento de diária efetuado para o aluno: " + aluno + " no valor de R$20,00");
     }
     
-    public void Aulaesperimental(boolean NuncaFrequentou){
-        if(NuncaFrequentou){
+
+    public void aulaExperimental(boolean nuncaFrequentou){
+        if(nuncaFrequentou){
             System.out.println("Aluno: " + aluno + " pode participar de uma aula experimental gratuita.");
         } else {
             System.out.println("Aluno: " + aluno + " não pode participar de uma aula experimental gratuita.");
         }
     }
+
 
     // Getters and Setters
     public String getAluno() {
@@ -74,10 +85,10 @@ public class Mensalidade {
         this.pagamentoEfetuado = pagamentoEfetuado;
     }
     public boolean isCancelar() {
-        return cancelar;
+        return cancelada;
     }
     public void setCancelar(boolean cancelar) {
-        this.cancelar = cancelar;
+        this.cancelada = cancelar;
     }
     public int getDiasTreino() {
         return diasTreino;

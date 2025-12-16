@@ -26,16 +26,26 @@ public class Aluno extends Pessoa {
         System.out.println("Endereço: " + getEndereco());
         System.out.println("Matrícula: " + matricula);
         System.out.println("Plano: " + plano);
+        System.out.println("Peso: " + peso);
+        System.out.println("Altura: " + altura);
+        System.out.println("Objetivo: " + objetivo);
+        System.out.println("IMC: " + calculoIMC());
     }
 
     public void inscreverAtividade(String atividade) {
         System.out.println("Aluno " + getNome() + " inscrito na atividade: " + atividade);
     }
-
+    // Cancelar inscrição em atividade
     public void cancelarInscricao(String atividade) {
         System.out.println("Inscrição do aluno " + getNome() + " na atividade " + atividade + " cancelada.");
     }
 
+    // Cálculo do IMC
+    public float calculoIMC() {
+        float imc = peso / (altura * altura);
+        System.out.println("IMC do aluno " + getNome() + ": " + imc);
+        return imc;
+    }
     
 
     // Getters and Setters

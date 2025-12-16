@@ -20,24 +20,16 @@ public class Instrutor extends Pessoa {
         System.out.println("Endereço: " + getEndereco());
         System.out.println("Especialização: " + especializacao);
         System.out.println("Salário: " + salario);
+        System.out.println("CREF: " + cref);
     }
 
-   
-
-
-
-
-
-
-
+    // Getters and Setters
     public String getEspecializacao() {
         return especializacao;
     }
     public void setEspecializacao(String especializacao) {
         this.especializacao = especializacao;
     }
-
-
     public double getSalario() {
         return salario;
     }
