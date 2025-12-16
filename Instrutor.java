@@ -1,6 +1,8 @@
 public class Instrutor extends Pessoa {
     String especializacao;
     double salario;
+    String cref;
+
 
     public Instrutor(int id, String nome, String cpf, String dataNascimento, String endereco, String especializacao, double salario) {
         super(id, nome, cpf, dataNascimento, endereco);
@@ -8,7 +10,7 @@ public class Instrutor extends Pessoa {
         this.salario = salario;
     }
 
-    @Override
+    @Override //Dados do Instrutor  
     public void exibirDetalhes() {
         System.out.println("Detalhes do Instrutor:");
         System.out.println("ID: " + getId());
@@ -20,7 +22,7 @@ public class Instrutor extends Pessoa {
         System.out.println("Salário: " + salario);
     }
 
-    
+   
 
 
 
@@ -42,5 +44,12 @@ public class Instrutor extends Pessoa {
     public void setSalario(double salario) {
         this.salario = salario;
     }
+    public String getCref() {
+        return cref;
+    }
+    public void setCref(String cref) {
+        this.cref = cref;
+    }
+
 
 }
