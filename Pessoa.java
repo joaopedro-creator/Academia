@@ -16,9 +16,6 @@ public abstract class Pessoa {
     public abstract void exibirDetalhes() ;
 
     
-
-
-    
     // Getters and Setters
     public int getId() {
         return id;
