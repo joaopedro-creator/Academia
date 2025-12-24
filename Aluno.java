@@ -1,3 +1,7 @@
+
+
+
+
 public class Aluno extends Pessoa {
     private int matricula;
     private String plano;
@@ -42,10 +46,21 @@ public class Aluno extends Pessoa {
 
     // Cálculo do IMC
     public float calculoIMC() {
+    try {
+        // Tentativa de cálculo
         float imc = peso / (altura * altura);
         System.out.println("IMC do aluno " + getNome() + ": " + imc);
         return imc;
+    } catch (ArithmeticException e) {
+        // Se a altura for 0, o Java cairá aqui
+        System.err.println("Erro: Não é possível calcular o IMC com altura zero.");
+        return 0;
+    } catch (Exception e) {
+        // Captura qualquer outro erro inesperado
+        System.err.println("Ocorreu um erro inesperado no cálculo: " + e.getMessage());
+        return 0;
     }
+}
     
 
     // Getters and Setters
