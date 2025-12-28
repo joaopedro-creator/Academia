@@ -1,5 +1,5 @@
 public class Mensalidade {
-    private String aluno;
+    private Aluno aluno;
     private float valor;
     private String dataVencimento;
     private boolean pagamentoEfetuado;
@@ -8,7 +8,7 @@ public class Mensalidade {
     private boolean temInstrutor;
 
 
-    public Mensalidade(String aluno, String dataVencimento, int diasTreino) {
+    public Mensalidade(Aluno aluno, String dataVencimento, int diasTreino) {
         this.aluno = aluno;
         this.valor = 100.0f;
         this.dataVencimento = dataVencimento;
@@ -76,10 +76,10 @@ public class Mensalidade {
 
 
     // Getters and Setters
-    public String getAluno() {
+    public Aluno getAluno() {
         return aluno;
     }
-    public void setAluno(String aluno) {
+    public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
     public float getValor() {

@@ -19,7 +19,7 @@ public class Atividade {
         this.carga = carga;
         this.sexo = sexo;
     }
-
+    // Divisão de treino baseada no tipo de atividade e sexo
     public void divisaoTreino() {
         System.out.println("Divisão de treinos" );
         if(sexo.equalsIgnoreCase("masculino")){
@@ -46,9 +46,6 @@ public class Atividade {
             }
         }
     }
-
-
-
 
 
 
