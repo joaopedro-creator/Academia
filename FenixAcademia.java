@@ -1,6 +1,6 @@
 import java.util.ArrayList;
-import java.util.List; // Importação necessária
-import java.util.Scanner;      // Importação necessária
+import java.util.List; 
+import java.util.Scanner;      
 
 public class FenixAcademia {
     public static void main(String[] args) {
