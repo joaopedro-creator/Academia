@@ -29,10 +29,10 @@ public class FenixAcademia {
 
             switch (opcao) {
                 case 1:
-                    menuAlunos(sc, membros);
+                        menuAlunos(sc, membros);
                     break;
                 case 2:
-                    menuInstrutores(sc, membros);
+                        menuInstrutores(sc, membros);
                     break;
                 case 3:
                     menuAtividades(sc, atividades);
@@ -49,8 +49,28 @@ public class FenixAcademia {
         } while (opcao != 5);
     }
 
-    // Menu de Alunos
+    private static boolean realizarLogin(Scanner sc, List<Pessoa> membros){
+            System.out.println("\n--- Login Necessário ---");
+            System.out.print("Digite seu nome de usuário: ");
+            String usuario = sc.nextLine();
+            System.out.print("Digite sua senha (número): ");
+            int senha = Integer.parseInt(sc.nextLine());
 
+            for (Pessoa p : membros) {
+                if (p instanceof Autenticavel) {
+                    Autenticavel aut = (Autenticavel) p;
+                    if (aut.login(usuario, senha)) {
+                        return true; // Login bem-sucedido
+                    }
+                }
+            }
+            System.out.println("Falha no login. Usuário ou senha incorretos.");
+            return false;
+        
+    }
+
+
+    // Menu de Alunos
     private static void menuAlunos(Scanner sc, List<Pessoa> membros) {
         System.out.println("\n[1] Cadastrar Aluno | [2] Listar Alunos");
         int subOpcao = Integer.parseInt(sc.nextLine());
@@ -76,16 +96,37 @@ public class FenixAcademia {
             String objetivo = sc.nextLine();
             
             // Criando o objeto e adicionando à lista
-            Aluno novoAluno = new Aluno(membros.size() + 1, nome, cpf, dataNasc, endereco, mat, plano   , peso, altura, objetivo);
+            Aluno novoAluno = new Aluno(membros.size() + 1, nome, cpf, dataNasc, endereco, mat, plano, peso, altura, objetivo);
             membros.add(novoAluno);
             System.out.println("Aluno cadastrado com sucesso!");
-        } else {
+        } else if (subOpcao == 2) {
+            System.out.println("-- AUTENTICAÇÃO NECESSÁRIA --");
+            System.out.print("Digite seu nome de usuário: ");
+            String usuario = sc.nextLine();
+            System.out.print("Digite sua senha (número): ");
+            int senha = Integer.parseInt(sc.nextLine());
+
+            boolean autenticado = false;
+            for (Pessoa p : membros) {
+                if (p instanceof Autenticavel) {
+                    Autenticavel aut = (Autenticavel) p;
+                    if (aut.login(usuario, senha)) {
+                        autenticado = true;
+                        break; // Login bem-sucedido
+                    }
+                }
+            }
+
+            if(autenticado) {
             System.out.println("\n--- LISTA DE ALUNOS ---");
             for (Pessoa p : membros) {
                 if (p instanceof Aluno) { // Filtra apenas quem é Aluno
                     p.exibirDetalhes();
                 }
             }
+        }
+    } else {
+            System.out.println("Falha no login. Usuário ou senha incorretos.");
         }
     }
 
@@ -111,13 +152,33 @@ public class FenixAcademia {
             Instrutor novoInstrutor = new Instrutor(membros.size() + 1, nome, cpf, dataNasc, endereco, especializacao, cref);
             membros.add(novoInstrutor);
             System.out.println("Instrutor cadastrado!");
-        } else {
+        } else if (subOpcao == 2) {
+            System.out.println("-- AUTENTICAÇÃO NECESSÁRIA --");
+            System.out.print("Digite seu nome de usuário: ");
+            String usuario = sc.nextLine();
+            System.out.print("Digite sua senha (número): ");
+            int senha = Integer.parseInt(sc.nextLine());
+
+            boolean autenticado = false;
+            for (Pessoa p : membros) {
+                if (p instanceof Autenticavel) {
+                    Autenticavel aut = (Autenticavel) p;
+                    if (aut.login(usuario, senha)) {
+                        autenticado = true;
+                        break; // Login bem-sucedido
+                    }
+                }
+            }
+            if(autenticado) {
             System.out.println("\n--- LISTA DE INSTRUTORES ---");
             for (Pessoa p : membros) {
                 if (p instanceof Instrutor) { 
                     p.exibirDetalhes();
                 }
             }
+          }
+        } else {
+            System.out.println("Falha no login. Usuário ou senha incorretos.");
         }
     }
 
@@ -143,7 +204,7 @@ public class FenixAcademia {
             }
 
             if (alunoEncontrado != null) {
-                // 2. Coletar dados para a mensalidade
+                // Coletar dados para a mensalidade
                 System.out.print("Data de Vencimento (dd/mm/aaaa): ");
                 String data = sc.nextLine();
                 System.out.print("Dias de treino por semana (3 ou 5): ");
@@ -151,15 +212,15 @@ public class FenixAcademia {
                 System.out.print("Terá instrutor fixo? (true/false): ");
                 boolean temInstrutor = Boolean.parseBoolean(sc.nextLine());
 
-                // 3. Instanciar a Mensalidade
+                // Instanciar a Mensalidade
                 Mensalidade novaMensa = new Mensalidade(alunoEncontrado, data, dias);
                 novaMensa.setTemInstrutor(temInstrutor);
                 
-                // 4. Calcular valor e processar
+                // Calcular valor e processar
                 novaMensa.definirValorPlano(); 
                 novaMensa.efetuarPagamento();
 
-                // 5. Guardar no histórico
+                // Guardar no histórico
                 mensalidades.add(novaMensa);
             } else {
                 System.out.println("Erro: Aluno com matrícula " + matriculaBusca + " não encontrado.");
@@ -174,6 +235,7 @@ public class FenixAcademia {
         }
     }
 
+    // Menu de Atividades
     private static void menuAtividades(Scanner sc, List<Atividade> atividades) {
         System.out.println("\n--- Gerenciamento de Atividades ---");
         System.out.println("1. Cadastrar Nova Atividade || 2. Listar Atividades");

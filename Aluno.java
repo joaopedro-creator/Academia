@@ -1,5 +1,5 @@
 
-public class Aluno extends Pessoa {
+public class Aluno extends Pessoa implements Autenticavel {
     private int matricula;
     private String plano;
     private float peso;
@@ -31,6 +31,18 @@ public class Aluno extends Pessoa {
         System.out.println("Altura: " + altura);
         System.out.println("Objetivo: " + objetivo);
         System.out.println("IMC: " + calculoIMC());
+    }
+
+    @Override
+    public boolean login(String usuario, int senha) {
+        // Implementação simples de login
+        if (usuario.equalsIgnoreCase(getNome()) && senha == getMatricula()) {
+            System.out.println("Login bem-sucedido para o aluno: " + getNome());
+            return true;
+        } else {
+            System.out.println("Falha no login para o aluno: " + getNome());
+            return false;
+        }
     }
 
     public void inscreverAtividade(String atividade) {

@@ -1,4 +1,4 @@
-public class Instrutor extends Pessoa {
+public class Instrutor extends Pessoa implements Autenticavel {
     private String especializacao;
     private String cref;
 
@@ -19,6 +19,19 @@ public class Instrutor extends Pessoa {
         System.out.println("Endereço: " + getEndereco());
         System.out.println("Especialização: " + especializacao);
         System.out.println("CREF: " + cref);
+    }
+
+    @Override
+    public boolean login(String usuario, int senha) {
+        // Implementação simples de login
+        int crefNumerico = Integer.parseInt(getCref());
+        if (usuario.equalsIgnoreCase(getNome()) && senha == crefNumerico) {
+            System.out.println("Login bem-sucedido para o instrutor: " + getNome());
+            return true;
+        } else {
+            System.out.println("Falha no login para o instrutor: " + getNome());
+            return false;
+        }
     }
 
     // Getters and Setters
