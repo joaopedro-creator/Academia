@@ -37,8 +37,10 @@ public class Mensalidade {
 
     // Define o valor com base nos dias de treino
     public void definirValorPlano() {
-
-    if (temInstrutor && diasTreino == 3) {
+    if (diasTreino == 1) {
+        this.valor = 20.0f;
+        System.out.println("Diária selecionada. Valor: R$20,00");
+    } else if (temInstrutor && diasTreino == 3) {
         this.valor = 195.0f;
         System.out.println("Plano com instrutor (3 dias). Valor: R$195,00");
 
@@ -62,13 +64,15 @@ public class Mensalidade {
 
     // Pagamento de diária 
     public void pagarDiaria(){
-        System.out.println("Pagamento de diária efetuado para o aluno: " + aluno + " no valor de R$20,00");
+        this.valor = 20.0f;
+        this.pagamentoEfetuado = true;
+        System.out.println("Pagamento de diária efetuado para o aluno: " + aluno.getNome() + " no valor de R$20,00");
     }
     
     // Aula experimental gratuita para quem nunca frequentou a academia
     public void aulaExperimental(boolean nuncaFrequentou){
         if(nuncaFrequentou){
-            System.out.println("Aluno: " + aluno + " pode participar de uma aula experimental gratuita.");
+            System.out.println("Você tem direito a participar de uma aula experimental gratuita.");
         } else {
             System.out.println("Aluno: " + aluno + " não pode participar de uma aula experimental gratuita.");
         }

@@ -186,7 +186,7 @@ public class FenixAcademia {
     // Menu de Mensalidades
         private static void menuMensalidades(Scanner sc, List<Pessoa> membros, List<Mensalidade> mensalidades) {
         System.out.println("\n--- Gerenciamento de Mensalidades ---");
-        System.out.println("1. Registrar Nova Mensalidade/Pagamento || 2. Ver Histórico de Mensalidades");
+        System.out.println("1. Registrar Nova Mensalidade/Pagamento || 2. Ver Histórico de Mensalidades|| 3. Pagar Diária ");
         System.out.print("Escolha: ");
         int subOpcao = Integer.parseInt(sc.nextLine());
 
@@ -202,7 +202,7 @@ public class FenixAcademia {
                     break;
                 }
             }
-
+            
             if (alunoEncontrado != null) {
                 // Coletar dados para a mensalidade
                 System.out.print("Data de Vencimento (dd/mm/aaaa): ");
@@ -231,6 +231,31 @@ public class FenixAcademia {
             for (Mensalidade m : mensalidades) {
                 // Exibe o nome do aluno (acessando o objeto Aluno dentro de Mensalidade) e o valor
                 System.out.println("Aluno: " + m.getAluno().getNome() + " | Valor: R$" + m.getValor() + " | Pago: " + m.isPagamentoEfetuado());
+            }
+        } else if (subOpcao == 3) {
+            System.out.println("\n--- PAGAMENTO DE DIÁRIA ---");
+            System.out.print("Digite a matrícula do aluno: ");
+            int matriculaBusca = Integer.parseInt(sc.nextLine());
+            
+            Aluno alunoEncontrado = null;
+            for (Pessoa p : membros) {
+                if (p instanceof Aluno && ((Aluno) p).getMatricula() == matriculaBusca) {
+                    alunoEncontrado = (Aluno) p;
+                    break;
+                }
+            }
+
+            if (alunoEncontrado != null) {
+                // 1. Criamos o objeto (passamos 1 dia apenas)
+                Mensalidade diaria = new Mensalidade(alunoEncontrado, "Hoje", 1);
+                
+                // 2. Chamamos o seu método que você já tinha na classe!
+                diaria.pagarDiaria(); 
+                
+                // 3. Adicionamos na lista para o histórico funcionar
+                mensalidades.add(diaria);
+            } else {
+                System.out.println("Aluno não encontrado.");
             }
         }
     }
