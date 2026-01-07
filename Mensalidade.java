@@ -69,14 +69,6 @@ public class Mensalidade {
         System.out.println("Pagamento de diária efetuado para o aluno: " + aluno.getNome() + " no valor de R$20,00");
     }
     
-    // Aula experimental gratuita para quem nunca frequentou a academia
-    public void aulaExperimental(boolean nuncaFrequentou){
-        if(nuncaFrequentou){
-            System.out.println("Você tem direito a participar de uma aula experimental gratuita.");
-        } else {
-            System.out.println("Aluno: " + aluno + " não pode participar de uma aula experimental gratuita.");
-        }
-    }
 
 
     // Getters and Setters

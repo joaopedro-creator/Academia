@@ -1,4 +1,3 @@
-
 public class Aluno extends Pessoa implements Autenticavel {
     private int matricula;
     private String plano;
