@@ -52,6 +52,14 @@ public class Aluno extends Pessoa implements Autenticavel {
         System.out.println("Inscrição do aluno " + getNome() + " na atividade " + atividade + " cancelada.");
     }
 
+
+    public String toFileString() { 
+    return this.getId() + ";" + this.getNome() + ";" + this.getCpf() + ";" + 
+           this.getDataNascimento() + ";" + this.getEndereco() + ";" + this.getMatricula() + ";" + 
+           this.getPlano() + ";" + this.getPeso() + ";" + this.getAltura() + ";" + 
+           this.getObjetivo();
+}
+
     // Cálculo do IMC
     public float calculoIMC() {
     try {

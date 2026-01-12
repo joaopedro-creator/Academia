@@ -6,7 +6,7 @@ public class Mensalidade {
     private boolean cancelada;
     private int diasTreino;
     private boolean temInstrutor;
-
+    
 
     public Mensalidade(Aluno aluno, String dataVencimento, int diasTreino) {
         this.aluno = aluno;

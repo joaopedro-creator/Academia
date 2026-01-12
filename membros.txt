@@ -1,0 +1,3 @@
+ALUNO;1;jose;876.098.453-09;01/01/2000;Endereço;445566;padrao;80.0;1.6;saude
+ALUNO;2;joao;078.853.783-06;01/01/2000;Endereço;578373;padrao;70.0;1.7;saude
+INSTRUTOR;3;maria;789.980.678-00;20/02/2005;geral;1221

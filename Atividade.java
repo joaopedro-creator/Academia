@@ -47,6 +47,11 @@ public class Atividade {
         }
     }
 
+    public String toFileString() {
+    return this.getNome() + ";" + this.getTipo() + ";" + this.getSeries() + ";" + 
+           this.getRepeticoes() + ";" + this.getDuracao() + ";" + 
+           this.getEquipamentoNecessario() + ";" + this.getCarga() + ";" + this.getSexo();
+}
 
 
     //getters e setters

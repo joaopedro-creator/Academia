@@ -34,6 +34,12 @@ public class Instrutor extends Pessoa implements Autenticavel {
         }
     }
 
+    public String toFileString() {
+    return this.getId() + ";" + this.getNome() + ";" + this.getCpf() + ";" + 
+           this.getDataNascimento() + ";" + 
+           this.getEspecializacao() + ";" + this.getCref();
+}
+
     // Getters and Setters
     public String getEspecializacao() {
         return especializacao;

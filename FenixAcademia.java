@@ -7,9 +7,9 @@ public class FenixAcademia {
         Scanner sc = new Scanner(System.in);
         
         // Criando as listas (Banco de dados temporário)
-        List<Pessoa> membros = new ArrayList<>();
+        List<Pessoa> membros = GerenciadorArquivos.carregarMembros();
         List<Atividade> atividades = new ArrayList<>();
-        List<Mensalidade> mensalidades = new ArrayList<>();
+        List<Mensalidade> mensalidades = GerenciadorArquivos.carregarMensalidades(membros);
         
 
         System.out.println("Bem-vindo à Fênix Academia!");
